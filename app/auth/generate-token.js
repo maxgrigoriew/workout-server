@@ -4,7 +4,7 @@ export const generateToken = userId => {
 	jwt.sign({
     userId,
   },
-  process.env.ACCESS_TOKEN,
+  process.env.JWT_TOKEN,
   {
     expiresIn: '10d'
   }

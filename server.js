@@ -1,4 +1,5 @@
-import authRoutes from './app/auth.routes.js'
+import authRoutes from './app/auth/auth.routes.js'
+import userRoutes from './app/user/user.routes.js'
 import { errorHandler, notFound } from './app/middleware/error.middleware.js'
 import { prisma } from './app/prisma.js'
 import 'colors'
@@ -17,6 +18,8 @@ const main = async () => {
 	app.use(express.json())
 
 	app.use('/api/auth', authRoutes)
+	app.use('/api/users', userRoutes)
+
 	app.use(notFound)
 	app.use(errorHandler)
 	app.listen(PORT, console.log(`сервер запущен ${process.env.NODE_ENV}`))
