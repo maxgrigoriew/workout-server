@@ -1,4 +1,5 @@
 import authRoutes from './app/auth.routes.js'
+import { errorHandler, notFound } from './app/middleware/error.middleware.js'
 import { prisma } from './app/prisma.js'
 import 'colors'
 import * as dotenv from 'dotenv'
@@ -16,7 +17,8 @@ const main = async () => {
 	app.use(express.json())
 
 	app.use('/api/auth', authRoutes)
-
+	app.use(notFound)
+	app.use(errorHandler)
 	app.listen(PORT, console.log(`сервер запущен ${process.env.NODE_ENV}`))
 }
 
